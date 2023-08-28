@@ -34,6 +34,7 @@ object Deps {
     val converterGson by lazy { "com.squareup.retrofit2:converter-gson:${Versions.retrofit}" }
 
     /* Room */
+    val roomRuntime by lazy { "androidx.room:room-runtime:${Versions.room}" }
     val room by lazy { "androidx.room:room-ktx:${Versions.room}" }
     val roomCompiler by lazy { "androidx.room:room-compiler:${Versions.room}" }
 

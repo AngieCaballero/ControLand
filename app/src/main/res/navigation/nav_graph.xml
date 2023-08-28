@@ -1,12 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/taskFragment">
+    app:startDestination="@id/homeFragment">
 
     <fragment
         android:id="@+id/taskFragment"
         android:name="com.example.controlandandroid.ui.task.view.TaskFragment"
-        android:label="TaskFragment" />
+        android:label="TaskFragment"
+        tools:layout="@layout/fragment_task"/>
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.example.controlandandroid.ui.home.view.HomeFragment"
+        android:label="HomeFragment"
+        tools:layout="@layout/fragment_home">
+
+        <action
+            android:id="@+id/to_taskFragment"
+            app:destination="@id/taskFragment" />
+
+        <action
+            android:id="@+id/to_docsFragment"
+            app:destination="@id/docsFragment" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/docsFragment"
+        android:name="com.example.controlandandroid.ui.docs.view.DocsFragment"
+        android:label="DocsFragment"
+        tools:layout="@layout/fragment_docs"/>
 
 </navigation>

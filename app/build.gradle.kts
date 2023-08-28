@@ -2,9 +2,11 @@ import org.jetbrains.kotlin.cli.jvm.main
 
 plugins {
     kotlin("kapt")
+    id("com.google.devtools.ksp")
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
     id("com.google.dagger.hilt.android")
+    id("androidx.navigation.safeargs.kotlin")
 }
 
 android {
@@ -34,7 +36,9 @@ android {
     sourceSets.getByName("main") {
         res.srcDirs(
             listOf(
-                "src/main/res/task"
+                "src/main/res/home",
+                "src/main/res/task",
+                "src/main/res/docs"
             )
         )
     }
@@ -63,7 +67,7 @@ dependencies {
     implementation(Deps.lifecycleLiveData)
 
     /* Coroutines */
-    implementation(Deps.kotlinCoroutines)
+    //implementation(Deps.kotlinCoroutines)
 
     /* Fragment */
     implementation(Deps.fragment)
@@ -80,11 +84,18 @@ dependencies {
 
     /* Room */
     implementation(Deps.room)
-    kapt(Deps.roomCompiler)
+    implementation(Deps.roomRuntime)
+    ksp(Deps.roomCompiler)
+
+    /* Room */
+    implementation(Deps.room)
+    implementation(Deps.roomRuntime)
+    ksp(Deps.roomCompiler)
 
     testImplementation(Deps.jUnit)
     androidTestImplementation(Deps.jUnitExt)
     androidTestImplementation(Deps.espresso)
+    //implementation(kotlin("reflect"))
 }
 
 kapt {
