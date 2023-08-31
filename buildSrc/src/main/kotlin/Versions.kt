@@ -16,6 +16,7 @@ object Versions {
     const val daggerHilt = "2.46.1"
     const val retrofit = "2.9.0"
     const val room = "2.5.0"
+    const val glide = "4.16.0"
     const val jUnit = "4.13.2"
     const val jUnitExt = "1.1.5"
     const val espresso = "3.5.1"

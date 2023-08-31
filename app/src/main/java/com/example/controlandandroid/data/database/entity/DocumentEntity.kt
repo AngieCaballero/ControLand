@@ -1,5 +1,6 @@
 package com.example.controlandandroid.data.database.entity
 
+import android.net.Uri
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
@@ -13,6 +14,7 @@ data class DocumentEntity(
     @ColumnInfo(name = "id") val id: Int = 0,
     @ColumnInfo(name = "name") val name: String,
     @ColumnInfo(name = "uri") val uri: String,
+    @ColumnInfo(name = "mimeType") val mimeType: String,
     @ColumnInfo(name = "uploadDate") val uploadDate: String
 ) {
 
@@ -22,6 +24,7 @@ data class DocumentEntity(
             return DocumentEntity(
                 name = this.name,
                 uri = this.uri,
+                mimeType = this.mimeType,
                 uploadDate = this.uploadDate
             )
         }
@@ -30,6 +33,7 @@ data class DocumentEntity(
             return map { document -> DocumentEntity(
                 name = document.name,
                 uri = document.uri,
+                mimeType = document.mimeType,
                 uploadDate = document.uploadDate
             )
             }

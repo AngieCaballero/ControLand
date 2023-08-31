@@ -29,4 +29,9 @@ object RoomModule {
     @Provides
     fun provideDocumentDao(db: ControLandDatabase) = db.getDocumentDao()
 
+
+    @Singleton
+    @Provides
+    fun provideRawDao(db: ControLandDatabase) = db.getRawDao()
+
 }

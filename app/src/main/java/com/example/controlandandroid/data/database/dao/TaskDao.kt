@@ -4,6 +4,8 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
+import androidx.room.RawQuery
+import androidx.sqlite.db.SupportSQLiteQuery
 import com.example.controlandandroid.data.database.entity.TaskEntity
 
 @Dao
@@ -21,9 +23,9 @@ interface TaskDao {
     @Query("SELECT * FROM task_table WHERE id = (:id)")
     suspend fun getTask(id: Int): TaskEntity?
 
-    @Query("SELECT * FROM task_table WHERE name = (:name)")
-    suspend fun getTasksByName(name: String): List<TaskEntity>?
-
     @Query("DELETE FROM task_table WHERE id = (:id)")
     suspend fun removeTask(id: Int)
+
+    @RawQuery
+    suspend fun filterTask(query: SupportSQLiteQuery): List<TaskEntity>?
 }

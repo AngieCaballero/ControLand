@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.controlandandroid.data.model.Filters
 import com.example.controlandandroid.data.model.Task
 import com.example.controlandandroid.data.repository.task.TaskRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -20,10 +21,11 @@ class TaskViewModel @Inject constructor(
     val taskList: LiveData<List<Task>?>
         get() = _taskList
 
-    fun fetchTasks(name: String = "") {
+    fun fetchTasks(name: String = "", client: String = "") {
+        val filters = Filters(name, client)
         viewModelScope.launch(Dispatchers.IO) {
-            val taskList = if (name.isEmpty()) taskRepository.getAllTasks()
-            else taskRepository.getTasksByName(name)
+            val taskList = if (name.isEmpty() && client.isEmpty()) taskRepository.getAllTasks()
+            else taskRepository.filterTask(filters)
             _taskList.postValue(taskList)
         }
     }

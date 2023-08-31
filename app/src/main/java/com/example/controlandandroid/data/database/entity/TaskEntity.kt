@@ -16,6 +16,8 @@ data class TaskEntity(
 
     companion object {
 
+        const val TABLE_NAME = "task_table"
+
         fun Task.toEntity(): TaskEntity {
             return TaskEntity(
                 name = name,

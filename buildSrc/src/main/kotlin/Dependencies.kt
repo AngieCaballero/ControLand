@@ -38,6 +38,9 @@ object Deps {
     val room by lazy { "androidx.room:room-ktx:${Versions.room}" }
     val roomCompiler by lazy { "androidx.room:room-compiler:${Versions.room}" }
 
+    /* Glide */
+    val glide by lazy { "com.github.bumptech.glide:glide:${Versions.glide}" }
+
     /* testing */
     val jUnit by lazy { "junit:junit:${Versions.jUnit}" }
     val jUnitExt by lazy { "androidx.test.ext:junit:${Versions.jUnitExt}" }

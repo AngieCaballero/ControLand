@@ -1,6 +1,7 @@
 package com.example.controlandandroid.ui.docs.viewmodel
 
 import android.net.Uri
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -22,13 +23,14 @@ class DocsViewModel @Inject constructor(
     val docsList: LiveData<List<Document>?>
         get() = _docsList
 
-    fun saveDocumentUriInDB(name: String, uri: Uri) {
+    fun saveDocumentUriInDB(name: String, uri: Uri, mimeType: String) {
         viewModelScope.launch(Dispatchers.IO) {
             docsRepository.saveDocument(
                 Document(
                     id = 0,
                     name = name,
                     uri = uri.toString(),
+                    mimeType = mimeType,
                     uploadDate = LocalDate.now().toString()
                 )
             )

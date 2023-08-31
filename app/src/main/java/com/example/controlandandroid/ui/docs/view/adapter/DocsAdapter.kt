@@ -5,9 +5,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.DecodeFormat
+import com.bumptech.glide.request.target.Target
 import com.example.controlandandroid.R
 import com.example.controlandandroid.data.model.Document
 import com.example.controlandandroid.databinding.ItemDocsBinding
+import com.example.controlandandroid.ui.utils.setGone
+import com.example.controlandandroid.ui.utils.setVisible
 
 class DocsAdapter(
     val listener: DocsListeners
@@ -55,9 +60,19 @@ class DocsAdapter(
 
         private val binding = ItemDocsBinding.bind(view)
 
+        @SuppressLint("SetTextI18n")
         fun bind(doc: Document) {
-            binding.itemDocName.text = doc.name
-            binding.itemDocDate.text = doc.uploadDate
+            binding.itemDocName.text = "Nombre: ${doc.name}"
+            binding.itemDocDate.text = "Fecha de subida: ${doc.uploadDate}"
+            binding.itemDocContent.text = doc.mimeType
+
+            if (doc.mimeType.substringBefore('/') == "image") {
+                binding.itemDocContentImageView.setVisible()
+                Glide.with(itemView.context)
+                    .load(doc.uri)
+                    .format(DecodeFormat.PREFER_ARGB_8888)
+                    .into(binding.itemDocContentImageView)
+            } else binding.itemDocContentImageView.setGone()
 
             binding.root.setOnClickListener {
                 listener.onSelectDoc(doc)

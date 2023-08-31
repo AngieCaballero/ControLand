@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.controlandandroid.R
 import com.example.controlandandroid.data.model.Task
 import com.example.controlandandroid.databinding.ItemTaskBinding
+import com.example.controlandandroid.ui.utils.RecyclerViewDiffUtil
 
 class TaskAdapter(
     val listener: TaskListeners
@@ -40,12 +41,6 @@ class TaskAdapter(
     @SuppressLint("NotifyDataSetChanged")
     fun updateTaskList(newTaskList: List<Task>) {
         val oldTaskList = taskList.toList()
-//        val differCallback = object : RecyclerViewDiffUtil<Task>(oldTaskList, newTaskList) {
-//            override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
-//                val properties1 = oldTaskList[oldItemPosition]::class.members
-//
-//            }
-//        }
         taskList.clear()
         taskList.addAll(newTaskList)
         notifyDataSetChanged()

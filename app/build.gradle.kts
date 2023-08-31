@@ -87,10 +87,8 @@ dependencies {
     implementation(Deps.roomRuntime)
     ksp(Deps.roomCompiler)
 
-    /* Room */
-    implementation(Deps.room)
-    implementation(Deps.roomRuntime)
-    ksp(Deps.roomCompiler)
+    /* Glide */
+    implementation (Deps.glide)
 
     testImplementation(Deps.jUnit)
     androidTestImplementation(Deps.jUnitExt)
